@@ -67,14 +67,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 25, ../sass/style.scss */
+/* line 31, ../sass/style.scss */
 html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 35, ../sass/style.scss */
 #bg {
   height: 100%;
   width: 100%;
@@ -87,7 +87,7 @@ html, body {
   left: 0;
 }
 
-/* line 38, ../sass/style.scss */
+/* line 44, ../sass/style.scss */
 #border {
   position: absolute;
   top: 0;
@@ -97,17 +97,18 @@ html, body {
   width: 100%;
   box-sizing: border-box;
   background-color: rgba(53, 56, 59, 0.8);
-  -moz-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
+  -moz-transition: all 450ms ease-out;
+  -o-transition: all 450ms ease-out;
+  -webkit-transition: all 450ms ease-out;
+  transition: all 450ms ease-out;
+  z-index: 10;
 }
-/* line 46, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 #border img, #border p {
   max-width: 450px;
   width: 90%;
 }
-/* line 50, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 #border img {
   position: absolute;
   top: 50%;
@@ -118,7 +119,7 @@ html, body {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 55, ../sass/style.scss */
+/* line 62, ../sass/style.scss */
 #border p {
   color: #f3eedd;
   position: absolute;
@@ -135,7 +136,7 @@ html, body {
   font-family: helvetica;
   line-height: 1.3em;
 }
-/* line 67, ../sass/style.scss */
+/* line 74, ../sass/style.scss */
 #border button {
   position: absolute;
   top: 20%;
@@ -147,15 +148,15 @@ html, body {
   transform: translate(-50%, 0);
 }
 
-/* line 73, ../sass/style.scss */
+/* line 80, ../sass/style.scss */
 #nav {
   position: absolute;
   bottom: 0px;
   right: 0px;
-  height: 200px;
   width: 100%;
+  z-index: 15;
 }
-/* line 77, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 #nav .credits {
   position: absolute;
   right: 45px;
@@ -173,7 +174,7 @@ html, body {
   -webkit-transform: scale(0);
   transform: scale(0);
 }
-/* line 86, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 #nav .credits.active {
   -moz-transform: scale(1);
   -o-transform: scale(1);
@@ -181,7 +182,7 @@ html, body {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-/* line 89, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 #nav .credits:hover {
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1);
@@ -189,7 +190,7 @@ html, body {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-/* line 92, ../sass/style.scss */
+/* line 100, ../sass/style.scss */
 #nav .w {
   position: absolute;
   bottom: -15px;
@@ -207,25 +208,38 @@ html, body {
   cursor: hand;
   cursor: pointer;
 }
-/* line 101, ../sass/style.scss */
+/* line 109, ../sass/style.scss */
 #nav .w.active {
   bottom: 5px;
 }
+/* line 112, ../sass/style.scss */
+#nav .back {
+  position: absolute;
+  bottom: -10px;
+  left: 15px;
+  opacity: 0;
+  pointer-events: none;
+  height: 20px;
+}
 
-/* line 105, ../sass/style.scss */
+/* line 121, ../sass/style.scss */
 #drag {
   height: 50px;
   width: 50px;
   background-color: black;
 }
 
-/* line 110, ../sass/style.scss */
+/* line 126, ../sass/style.scss */
 #mapImg {
   width: 100%;
   cursor: url(../img/hand.png), auto;
+  -moz-transition: all 250ms ease-out;
+  -o-transition: all 250ms ease-out;
+  -webkit-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
 }
 
-/* line 115, ../sass/style.scss */
+/* line 132, ../sass/style.scss */
 .hotspot1 {
   position: absolute;
   top: 64%;
@@ -235,7 +249,74 @@ html, body {
   z-index: 50;
 }
 
-/* line 121, ../sass/style.scss */
+/* line 138, ../sass/style.scss */
 .hotspot1 {
   cursor: url(../img/clickable.png), auto;
+}
+
+/* line 142, ../sass/style.scss */
+#content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(../img/hotspot1BG.png) no-repeat center center fixed;
+  background-size: cover;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  -moz-transition: all 250ms ease-out;
+  -o-transition: all 250ms ease-out;
+  -webkit-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+}
+
+/* line 155, ../sass/style.scss */
+.content-active #mapImg {
+  -webkit-filter: blur(4.5px);
+}
+/* line 158, ../sass/style.scss */
+.content-active #border {
+  border-bottom-width: 40px;
+  border-top-width: 40px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+/* line 164, ../sass/style.scss */
+.content-active #content {
+  -moz-transition-delay: 450ms;
+  -o-transition-delay: 450ms;
+  -webkit-transition-delay: 450ms;
+  transition-delay: 450ms;
+  opacity: 1;
+  pointer-events: inherit;
+}
+/* line 170, ../sass/style.scss */
+.content-active #nav .w {
+  bottom: 15px;
+}
+/* line 173, ../sass/style.scss */
+.content-active #nav .back {
+  opacity: 1;
+  pointer-events: inherit;
+  -moz-transition: all 250ms ease-out;
+  -o-transition: all 250ms ease-out;
+  -webkit-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+  cursor: hand;
+  cursor: pointer;
+  bottom: 10px;
+}
+/* line 180, ../sass/style.scss */
+.content-active #nav .back:hover {
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  -ms-transform: scale(2);
+  -webkit-transform: scale(2);
+  transform: scale(2);
+}
+/* line 183, ../sass/style.scss */
+.content-active #nav .credits {
+  bottom: -25px;
 }

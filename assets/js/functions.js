@@ -32,7 +32,6 @@
 		var intro = $('.intro-wrap');
 		var credits = $('.credits, .w');
 		button.click(function(){
-			console.log('click');
 			intro.fadeOut(function(){
 				splash.css({
 					backgroundColor: 'rgba(53,56,59,0)',
@@ -45,21 +44,31 @@
 				mapMidX = parseInt(map.width() / 2)-window.innerWidth/2;
 				mapMidY = parseInt(map.height() / 2)-window.innerHeight/2;
 				speed = 2;
-				tl.to(map, speed, {x:-mapMidX, y:-mapMidY, onComplete:introScrollDone});
+				tl.to(map, speed, {x:-mapMidX, y:-mapMidY, onUpdate:introScrollDone});
 				tl.play();
 				function introScrollDone(){
 					credits.addClass('active');
-
 				}
 			});
 		});
+	}
 
+	function toggleContent(){
+		$('.wrapper').toggleClass('content-active');
+	}
+
+	function clicks(){
+		$('.hotspot1, .back').click(function(){
+			toggleContent();
+			$('body, html').css('overflow','hidden');
+		});
 	}
 
 	/* trigger when page is ready */
 	$(document).ready(function (){
 		createMap();
 		enter();
+		clicks();
 	});
 	
 	

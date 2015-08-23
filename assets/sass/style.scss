@@ -21,6 +21,12 @@ $font: helvetica;
     -webkit-transition: $transition;
     transition:         $transition;
 }
+@mixin transition-delay($delay) {
+    -moz-transition-delay:    $delay;
+    -o-transition-delay:      $delay;
+    -webkit-transition-delay: $delay;
+    transition-delay:         $delay;
+}
 
 html, body {
 	height: 100%; width: 100%;
@@ -42,7 +48,8 @@ html, body {
 	height: 100%; width: 100%;
 	box-sizing: border-box;
 	background-color: rgba(53,56,59, .8);
-	@include transition(all 250ms ease-out);
+	@include transition(all 450ms ease-out);
+	z-index: 10;
 	img, p {
 		max-width: 450px;
 		width: 90%;
@@ -73,7 +80,8 @@ html, body {
 #nav {
 	position: absolute;
 	bottom: 0px; right: 0px;
-	height: 200px; width: 100%;
+	width: 100%;
+	z-index: 15;
 	.credits {
 		position: absolute;
 		right: 45px;
@@ -101,6 +109,14 @@ html, body {
 	.w.active {
 		bottom: 5px;
 	}
+	.back {
+		position: absolute;
+		bottom: -10px;
+		left: 15px;
+		opacity: 0;
+		pointer-events: none;
+		height: 20px;
+	}
 }
 #drag {
 	height: 50px; width: 50px; 
@@ -110,6 +126,7 @@ html, body {
 #mapImg {
 	width: 100%;
 	cursor: url(../img/hand.png), auto;
+	@include transition(all 250ms ease-out);
 }
 
 .hotspot1 {
@@ -120,4 +137,51 @@ html, body {
 }
 .hotspot1 {
 	cursor: url(../img/clickable.png), auto;
+}
+
+#content {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0; left: 0;
+	background: url(../img/hotspot1BG.png)no-repeat center center fixed;
+	background-size: cover;
+	z-index: 5;
+	opacity: 0;
+	pointer-events: none;
+	@include transition(all 250ms ease-out);
+}
+.content-active {
+	#mapImg {
+		-webkit-filter: blur(4.5px);
+	}
+	#border {
+		border-bottom-width: 40px;
+		border-top-width: 40px;
+		border-left-width: 0px;
+		border-right-width: 0px;
+	}
+	#content {
+		@include transition-delay(450ms);
+		opacity: 1;
+		pointer-events: inherit;
+	}
+	#nav {
+		.w {
+			bottom: 15px;
+		}
+		.back {
+			opacity: 1;
+			pointer-events: inherit;
+			@include transition(all 250ms ease-out);
+			cursor: hand; cursor: pointer;
+			bottom: 10px;
+		}
+		.back:hover {
+			@include transform(scale(2));
+		}
+		.credits {
+			bottom: -25px;
+		}
+	}
 }
